@@ -1,4 +1,9 @@
 # Spring Boot Projects
+[![GitHub issues](https://img.shields.io/github/issues/Carla-de-Beer/Spring-Boot-Projects.svg?style=flat-square)](https://github.com/Carla-de-Beer/Spring-Boot-Projects/issues)
+
+This repository contains a number of Spring Boot API and MVC projects.
+
+## List of projects
 
 The following is a list of the projects included in this repository:
 

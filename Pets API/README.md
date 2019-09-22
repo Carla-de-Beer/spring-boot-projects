@@ -14,7 +14,8 @@ Execute the following commands in order to create the MongoDB database:
 
 `db.createCollection("pet");`
 
-```db.pet.insertMany([
+```
+db.pet.insertMany([
   {
     "name" : "Fluffy",
     "species" : "cat",
