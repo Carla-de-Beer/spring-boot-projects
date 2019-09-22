@@ -65,6 +65,7 @@ public class ReaderService {
             JsonElement createdElement = element.getAsJsonObject().get("created_at");
             JsonElement updatedElement = element.getAsJsonObject().get("updated_at");
             JsonElement ownerElement = element.getAsJsonObject().get("owner");
+            JsonElement starElement = element.getAsJsonObject().get("stargazers_count");
 
             String repoName = nameElement instanceof JsonNull ? "" : nameElement.getAsString();
             String htmlUrl = htmlUrlElement instanceof JsonNull ? "" : htmlUrlElement.getAsString();
@@ -72,6 +73,7 @@ public class ReaderService {
             String language = languageElement instanceof JsonNull ? "" : languageElement.getAsString();
             String createdYear = languageElement instanceof JsonNull ? "" : createdElement.getAsString();
             String updatedYear = languageElement instanceof JsonNull ? "" : updatedElement.getAsString();
+            int stargazersCount = languageElement instanceof JsonNull ? 0 : starElement.getAsInt();
             boolean isForked = !(forkElement instanceof JsonNull) && forkElement.getAsBoolean();
             boolean isOwner = !(ownerElement instanceof JsonNull) &&
                     ownerElement.getAsJsonObject().get("login").getAsString().equals(userName);
@@ -85,11 +87,15 @@ public class ReaderService {
                     .updatedYear(updatedYear.length() > 4 ? updatedYear.substring(0, 4) : "")
                     .isFork(isForked)
                     .isOwner(isOwner)
+                    .stargazersCount(stargazersCount)
                     .build();
 
             repositories.add(repo);
         }
-        return repositories;
+
+        return repositories
+                .stream()
+                .sorted(Comparator.comparing(GitHubRepository::getRepoName)).collect(Collectors.toList());
     }
 
     public User getUser(String userNameInput) {

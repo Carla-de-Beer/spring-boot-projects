@@ -16,6 +16,7 @@ public class GitHubRepository {
     String language;
     String createdYear;
     String updatedYear;
+    int stargazersCount;
     boolean isFork;
     boolean isOwner;
 }

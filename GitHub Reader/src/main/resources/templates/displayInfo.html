@@ -44,6 +44,7 @@
         </br>
         <span th:text="${repo.isFork() != '' && repo.isFork()} ? 'Fork: &#10004;' : ''"></span>
         <span th:text="${repo.isOwner() != '' && repo.isOwner()} ? 'Owner: &#10004;' : ''"></span>
+        <span th:text="${repo.getStargazersCount() != 0} ? '&#11088;' + ${repo.getStargazersCount()}: ''"></span>
         </br></br>
     </p>
 </div>

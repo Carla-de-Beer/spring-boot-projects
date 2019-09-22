@@ -32,6 +32,7 @@ class ReaderServiceTest extends Specification {
                 .description("description1")
                 .language(language1)
                 .createdYear("2012")
+                .stargazersCount(0)
                 .build())
         repoList.add(GitHubRepository.builder()
                 .repoName("repoName2")
@@ -47,6 +48,7 @@ class ReaderServiceTest extends Specification {
                 .repoName("repoName4")
                 .urlLink("urlLink4")
                 .description("description4")
+                .stargazersCount(3)
                 .build())
     }
 
@@ -87,7 +89,7 @@ class ReaderServiceTest extends Specification {
         result != null
         result.getClass() == User
         result.getUserName() == "The Octocat"
-        result.getUrl() == "https://github.com/octocat"
+        result.getHtmlUrl() == "https://github.com/octocat"
         result.getAvatarUrl() == "https://avatars3.githubusercontent.com/u/583231?v=4"
         result.getYearCreated() == "2011"
         result.getNumFollowers() == 30
