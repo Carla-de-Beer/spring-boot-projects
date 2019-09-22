@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/style.css}">
+    <title>GitHub Reader</title>
+</head>
+
+<body>
+
+<h1>GitHub User Account Info</h1>
+</br>
+<form action="#" th:action="@{/}" method="post">
+    <div class="container">
+        <p>Enter a GitHub account name:</p>
+        <p><input placeholder="Enter name here" type="text" th:value="${gitHubName}" name="gitHubName"/></p>
+        <p><input class="submitBtn" type="submit" value="Submit"/>
+            <input class="submitBtn" type="reset" value="Reset"/></p>
+    </div>
+</form>
+
+</body>
+</html>

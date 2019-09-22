@@ -1,0 +1,106 @@
+body {
+    margin: 50px;
+    padding: 0;
+    overflow: scroll;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    color: coral;
+    text-align: center;
+    font-size: 20px;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    color: coral;
+    text-align: center;
+    font-size: 17px;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+}
+
+p, .frequencies {
+    top: 0;
+    margin: 10px;
+    text-align: center;
+    color: #5a5a5a;
+    font-family: "DejaVu Sans", Arial, Helvetica, sans-serif;
+    font-size: 15px;
+}
+
+#inner {
+    display: table;
+    margin: 0 auto;
+}
+
+.info {
+    color: royalblue;
+    font-size: 17px;
+}
+.errorMessage {
+    font-weight: bold;
+}
+
+.errorLink {
+    color: royalblue;
+    font-size: 15px;
+}
+
+.italic {
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.bold {
+    color: royalblue;
+    font-weight: bold;
+}
+
+.container {
+    padding: 16px;
+    background-color: white;
+    justify-content: center;
+}
+
+input[type=text], input[type=password] {
+    width: 50%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    display: inline-block;
+    border: none;
+    background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+}
+
+.submitBtn {
+    background-color: royalblue;
+    color: white;
+    padding: 16px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 24.9%;
+    opacity: 0.9;
+}
+
+.submitBtn:hover {
+    opacity: 1;
+}
+
+a {
+    color: royalblue;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 18%;
+}
