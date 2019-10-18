@@ -42,7 +42,6 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public City update(City city) {
-        UUID id = city.getId();
         // Don't add the same city with the same name
         if (doesIdExist(city.getId())) {
             throw new CityNotFoundException("City does not exist.");

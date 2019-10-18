@@ -2,7 +2,7 @@
 
 This is a Spring Boot API project that displays data related to cities. The city data is manipulated by means of standard CRUD calls, together with custom queries. The data is contained within a MySQL database.
 
-The project was built with Java 8 and Maven. Swagger2 was used to display API documentation.
+The project was built with Java 11 and Maven. Swagger2 was used to generate the API documentation.
 
 
 ## Getting started
@@ -31,7 +31,7 @@ The project was built with Java 8 and Maven. Swagger2 was used to display API do
 
 ## Getting started
 
-Download or clone the project. Build the project with teh command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
+Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
 
 * GET/READ:
 

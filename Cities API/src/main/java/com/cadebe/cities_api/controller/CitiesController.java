@@ -58,7 +58,7 @@ public class CitiesController {
                                            @PathVariable("id") String id) {
         UUID uuid = UUID.fromString(id);
         Optional<City> city = cityService.findById(uuid);
-        if (!city.isPresent()) {
+        if (city.isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
             eh.handelError(uuid);
             return new ResponseEntity<>("City not found", HttpStatus.NOT_FOUND);
@@ -82,7 +82,7 @@ public class CitiesController {
     @ExceptionHandler(value = CityNotFoundException.class)
     public ResponseEntity<Object> update(@PathVariable("id") String id, @RequestBody City city) {
         UUID uuid = UUID.fromString(id);
-        if (!cityService.findById(uuid).isPresent()) {
+        if (cityService.findById(uuid).isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
             eh.handelError(uuid);
             return new ResponseEntity<>("City not found", HttpStatus.NOT_FOUND);
@@ -94,7 +94,7 @@ public class CitiesController {
     @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
     public ResponseEntity<Boolean> deleteById(@PathVariable("id") String id) {
         UUID uuid = UUID.fromString(id);
-        if (!cityService.findById(uuid).isPresent()) {
+        if (cityService.findById(uuid).isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
             eh.handelError(uuid);
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
