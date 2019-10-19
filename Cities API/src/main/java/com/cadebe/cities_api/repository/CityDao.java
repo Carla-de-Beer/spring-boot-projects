@@ -14,9 +14,9 @@ public interface CityDao {
 
     Optional<List<City>> findByName(String name);
 
-    City save(City stock);
+    City save(City city);
 
-    City update(City stock);
+    City update(City city);
 
     void deleteById(UUID id);
 }

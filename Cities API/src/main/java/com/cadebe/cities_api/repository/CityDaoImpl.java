@@ -14,47 +14,47 @@ import java.util.UUID;
 @Repository("JPA_Dao")
 public class CityDaoImpl implements CityDao {
 
-    private final CityJPA cityDao;
-    private final MessageSource messageSource;
+    private final CityJPA CITY_DAO;
+    private final MessageSource MESSAGE_SERVICE;
 
     @Autowired
     public CityDaoImpl(CityJPA cityDao, MessageSource messageSource) {
-        this.cityDao = cityDao;
-        this.messageSource = messageSource;
+        this.CITY_DAO = cityDao;
+        this.MESSAGE_SERVICE = messageSource;
     }
 
     @Override
     public List<City> findAll() {
-        return (List<City>) this.cityDao.findAll();
+        return (List<City>) this.CITY_DAO.findAll();
     }
 
     @Override
     public Optional<City> findById(UUID id) {
-        return cityDao.findById(id);
+        return CITY_DAO.findById(id);
     }
 
     @Override
     public Optional<List<City>> findByName(String name) {
-        return cityDao.findByName(name);
+        return CITY_DAO.findByName(name);
     }
 
     @Override
     public City save(City city) {
-        return cityDao.save(city);
+        return CITY_DAO.save(city);
     }
 
     @Override
     public City update(City city) {
         if (doesIdExist(city.getId())) {
-            String message = messageSource.getMessage("city.does.not.exist", null, LocaleContextHolder.getLocale());
+            String message = MESSAGE_SERVICE.getMessage("city.does.not.exist", null, LocaleContextHolder.getLocale());
             throw new CityNotFoundException(message + ".");
         }
-        return cityDao.save(city);
+        return CITY_DAO.save(city);
     }
 
     @Override
     public void deleteById(UUID id) {
-        cityDao.deleteById(id);
+        CITY_DAO.deleteById(id);
     }
 
     private Boolean doesIdExist(UUID id) {

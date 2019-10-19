@@ -13,34 +13,34 @@ import java.util.UUID;
 @Service
 public class CityService {
 
-    private CityDao cityDao;
+    private final CityDao CITY_DAO;
 
     @Autowired
     public CityService(@Qualifier("JPA_Dao") CityDao cityDao) {
-        this.cityDao = cityDao;
+        this.CITY_DAO = cityDao;
     }
 
     public List<City> findAll() {
-        return this.cityDao.findAll();
+        return this.CITY_DAO.findAll();
     }
 
     public Optional<City> findById(UUID id) {
-        return cityDao.findById(id);
+        return this.CITY_DAO.findById(id);
     }
 
     public Optional<List<City>> findByName(String name) {
-        return cityDao.findByName(name);
+        return this.CITY_DAO.findByName(name);
     }
 
     public City save(City city) {
-        return cityDao.save(city);
+        return this.CITY_DAO.save(city);
     }
 
     public City update(City city) {
-        return cityDao.update(city);
+        return this.CITY_DAO.update(city);
     }
 
     public void deleteById(UUID id) {
-        cityDao.deleteById(id);
+        this.CITY_DAO.deleteById(id);
     }
 }

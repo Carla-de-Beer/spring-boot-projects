@@ -149,7 +149,7 @@
 							"});",
 							"",
 							"pm.test(\"Body matches string\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"City not found\");",
+							"    pm.expect(pm.response.text()).to.include(\"City not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -243,7 +243,7 @@
 							"});",
 							"",
 							"pm.test(\"Body matches string\", function () {",
-							"    pm.expect(pm.response.text()).to.include(\"City not found\");",
+							"    pm.expect(pm.response.text()).to.include(\"City not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -524,7 +524,7 @@
 							"});",
 							"",
 							"pm.test(\"Body is correct\", function () {",
-							"   pm.expect(pm.response.json()).to.eql(true);",
+							"      pm.expect(pm.response.json()).to.be.true;",
 							"});",
 							""
 						],
@@ -573,7 +573,7 @@
 							"});",
 							"",
 							"pm.test(\"Body is correct\", function () {",
-							"   pm.expect(pm.response.json()).to.eql(false);",
+							"      pm.expect(pm.response.json()).to.be.false;",
 							"});",
 							""
 						],
