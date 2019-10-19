@@ -11,22 +11,9 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "d73c8d2c-22fc-4af0-a6bb-183806d8cd33",
+						"id": "93fe63e0-ed6a-41e6-86ad-fab65b0d3421",
 						"exec": [
-							"//postman.setGlobalVariable(\"firstCityId\", pm.response.json()[0].id);",
-							"",
-							"console.log(pm);",
-							"",
-							"// function findJoe() {",
-							"//     for (var i = 0; i < pm.response.json().length; ++i) {",
-							"//       if (pm.response.json()[i].firstName === \"Joe\" && pm.response.json()[i].lastName == \"Green\") {",
-							"//           return pm.response.json()[i].id;",
-							"//       } ",
-							"//     }",
-							"//     return \"\";",
-							"// }",
-							"",
-							"// postman.setGlobalVariable(\"joeGreenId\", findJoe());"
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -159,6 +146,10 @@
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"City not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -249,6 +240,10 @@
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"City not found\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -282,9 +277,9 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "e093daf1-91cf-4dc0-b23c-5e992cff6611",
+						"id": "ba0cfdfb-a8cc-4588-acb6-fa0ffba59aff",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
 							"});",
 							"",
@@ -295,6 +290,7 @@
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
 							"});",
+							"",
 							""
 						],
 						"type": "text/javascript"
@@ -313,7 +309,64 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Paris\",\n\t\"population\": 12532901,\n    \"longitude\": 0.0,\n    \"latitude\": 0.0\n}"
+					"raw": "{\n\t\"name\": \"Paris\",\n\t\"countryCode\": \"FR\",\n\t\"population\": 12532901,\n    \"longitude\": 0.0,\n    \"latitude\": 0.0\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new city (Paris; trying to save again)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "20f90fee-bc8d-4a6f-8e49-21ac2be1ddcd",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Paris\",\n\t\"countryCode\": \"FR\",\n\t\"population\": 12532901,\n    \"longitude\": 0.0,\n    \"latitude\": 0.0\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/cities/",
@@ -431,7 +484,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Paris\",\n\t\"population\": 12532901,\n    \"longitude\": 48.864716,\n    \"latitude\": 2.349014\n}"
+					"raw": "{\n\t\"name\": \"Paris\",\n\t\"countryCode\": \"FR\",\n\t\"population\": 12532901,\n    \"longitude\": 48.864716,\n    \"latitude\": 2.349014\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/cities/{{ParisId}}",
@@ -468,7 +521,12 @@
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
-							"});"
+							"});",
+							"",
+							"pm.test(\"Body is correct\", function () {",
+							"   pm.expect(pm.response.json()).to.eql(true);",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -495,7 +553,78 @@
 			"response": []
 		},
 		{
+			"name": "Delete city by ID (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "46fe448e-64e6-4eae-a859-4bb832771f72",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Body is correct\", function () {",
+							"   pm.expect(pm.response.json()).to.eql(false);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/d2992100-d58e-11e9-b075-ef972a09af52",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"d2992100-d58e-11e9-b075-ef972a09af52"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Save new city (Bratislava)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03438b76-8891-4366-85eb-1935c6770630",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -508,7 +637,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Bratislava\",\n\t\"population\": 432000,\n    \"longitude\": 48.148598,\n    \"latitude\": 17.107748\n}"
+					"raw": "{\n\t\"name\": \"Bratislava\",\n\t\"countryCode\": \"SK\",\n\t\"population\": 432000,\n    \"longitude\": 48.148598,\n    \"latitude\": 17.107748\n}"
 				},
 				"url": {
 					"raw": "http://localhost:8080/api/v1/cities/",

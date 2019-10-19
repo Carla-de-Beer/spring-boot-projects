@@ -1,10 +1,11 @@
-package com.cadebe.cities_api.dao;
+package com.cadebe.cities_api.repository;
 
 import com.cadebe.cities_api.exception.CityNotFoundException;
 import com.cadebe.cities_api.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,8 +14,14 @@ import java.util.UUID;
 @Repository("JPA_Dao")
 public class CityDaoImpl implements CityDao {
 
+    private final CityJPA cityDao;
+    private final MessageSource messageSource;
+
     @Autowired
-    private CityJPA cityDao;
+    public CityDaoImpl(CityJPA cityDao, MessageSource messageSource) {
+        this.cityDao = cityDao;
+        this.messageSource = messageSource;
+    }
 
     @Override
     public List<City> findAll() {
@@ -33,18 +40,14 @@ public class CityDaoImpl implements CityDao {
 
     @Override
     public City save(City city) {
-        // Don't add the same city with the same name
-        if (doesNameExist(city.getName())) {
-            throw new CityNotFoundException("City already exists.");
-        }
         return cityDao.save(city);
     }
 
     @Override
     public City update(City city) {
-        // Don't add the same city with the same name
         if (doesIdExist(city.getId())) {
-            throw new CityNotFoundException("City does not exist.");
+            String message = messageSource.getMessage("city.does.not.exist", null, LocaleContextHolder.getLocale());
+            throw new CityNotFoundException(message + ".");
         }
         return cityDao.save(city);
     }
@@ -52,16 +55,6 @@ public class CityDaoImpl implements CityDao {
     @Override
     public void deleteById(UUID id) {
         cityDao.deleteById(id);
-    }
-
-    private Boolean doesNameExist(String name) {
-        List<City> list = findAll();
-        for (City c : list) {
-            if (c.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
     }
 
     private Boolean doesIdExist(UUID id) {

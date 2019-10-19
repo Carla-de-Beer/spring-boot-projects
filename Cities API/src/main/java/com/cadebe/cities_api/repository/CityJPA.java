@@ -1,4 +1,4 @@
-package com.cadebe.cities_api.dao;
+package com.cadebe.cities_api.repository;
 
 import com.cadebe.cities_api.model.City;
 import org.springframework.data.jpa.repository.Query;

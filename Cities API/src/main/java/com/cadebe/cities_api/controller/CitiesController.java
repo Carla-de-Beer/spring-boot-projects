@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,21 +24,19 @@ import java.util.UUID;
 public class CitiesController {
 
     private final CityService cityService;
+    private final MessageSource messageSource;
 
     @Autowired
-    public CitiesController(CityService cityService) {
+    public CitiesController(CityService cityService, MessageSource messageSource) {
         this.cityService = cityService;
+        this.messageSource = messageSource;
     }
 
     // CREATE
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ExceptionHandler(value = CityNotFoundException.class)
     public ResponseEntity<Object> createNewCity(@RequestBody City newCity) {
-        try {
-            return new ResponseEntity<>(cityService.save(newCity), HttpStatus.CREATED);
-        } catch (Exception e) {
-            return new ResponseEntity<>("City could not be added: " + e.getMessage(), HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(cityService.save(newCity), HttpStatus.CREATED);
     }
 
     // READ
@@ -61,7 +61,7 @@ public class CitiesController {
         if (city.isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
             eh.handelError(uuid);
-            return new ResponseEntity<>("City not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(generateErrorMessage("city.not.found"), HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(city.get(), HttpStatus.OK);
     }
@@ -74,7 +74,8 @@ public class CitiesController {
         Optional<List<City>> city = cityService.findByName(name);
         ErrorHandler<String> eh = new ErrorHandler<>();
         eh.handelError(name);
-        return city.<ResponseEntity<Object>>map(cities -> new ResponseEntity<>(cities, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>("City not found", HttpStatus.NOT_FOUND));
+        return city.<ResponseEntity<Object>>map(cities -> new ResponseEntity<>(cities, HttpStatus.OK)).orElseGet(() ->
+                new ResponseEntity<>(generateErrorMessage("city.not.found"), HttpStatus.NOT_FOUND));
     }
 
     // UPDATE
@@ -85,14 +86,18 @@ public class CitiesController {
         if (cityService.findById(uuid).isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
             eh.handelError(uuid);
-            return new ResponseEntity<>("City not found", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(generateErrorMessage("city.not.found"), HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cityService.update(city), HttpStatus.NO_CONTENT);
+        try {
+            return new ResponseEntity<>(cityService.update(city), HttpStatus.NO_CONTENT);
+        } catch (Exception e) {
+            return new ResponseEntity<>(generateErrorMessage("city.not.updated") + ": " + e.getMessage(), HttpStatus.NOT_FOUND);
+        }
     }
 
     // DELETE
     @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
-    public ResponseEntity<Boolean> deleteById(@PathVariable("id") String id) {
+    public ResponseEntity<Object> deleteById(@PathVariable("id") String id) {
         UUID uuid = UUID.fromString(id);
         if (cityService.findById(uuid).isEmpty()) {
             ErrorHandler<UUID> eh = new ErrorHandler<>();
@@ -103,9 +108,13 @@ public class CitiesController {
         return new ResponseEntity<>(true, HttpStatus.OK);
     }
 
+    private String generateErrorMessage(String i18n) {
+        return messageSource.getMessage(i18n, null, LocaleContextHolder.getLocale());
+    }
+
     private static class ErrorHandler<T> {
         private void handelError(T uuid) {
-            log.error("Received id {} is not present and city object could not be updated", uuid);
+            log.error("Received id {} is not present and the database could not be updated", uuid);
         }
     }
 }

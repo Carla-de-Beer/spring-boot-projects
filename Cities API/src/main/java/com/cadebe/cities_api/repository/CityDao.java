@@ -1,7 +1,6 @@
-package com.cadebe.cities_api.dao;
+package com.cadebe.cities_api.repository;
 
 import com.cadebe.cities_api.model.City;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;

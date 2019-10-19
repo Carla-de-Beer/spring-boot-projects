@@ -29,6 +29,9 @@ public class City {
     @ApiModelProperty(notes = "City name")
     String name;
 
+    @ApiModelProperty(notes = "Country")
+    String countryCode;
+
     @ApiModelProperty(notes = "Population size")
     int population;
 

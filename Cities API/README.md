@@ -2,7 +2,7 @@
 
 This is a Spring Boot API project that displays data related to cities. The city data is manipulated by means of standard CRUD calls, together with custom queries. The data is contained within a MySQL database.
 
-The project was built with Java 11 and Maven. Swagger2 was used to generate the API documentation.
+The project is built with Java 11 and Maven. Swagger2 is used to generate the API documentation.
 
 
 ## Getting started
@@ -15,23 +15,25 @@ The project was built with Java 11 and Maven. Swagger2 was used to generate the 
     CREATE TABLE cities (
     `id` BINARY(16) NOT NULL primary key,
     `name` VARCHAR(255),
+    `country_code` VARCHAR(2),
     `population` INT,
     `latitude` DOUBLE,
     `longitude` DOUBLE) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Bratislava', 432508, 48.148598, 17.107748);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Budapest', 1763913, 47.497913, 19.040236);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Prague', 1298804, 50.075539, 14.437800);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Warsaw', 1775933, 52.229675, 21.012230);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Los Angeles', 4057841, 34.052235, -118.243683);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'New York', 8601186, 40.712776, -74.005974);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Edinburgh', 530741, 55.953251, -3.188267);
-    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Berlin', 3556792, 52.520008, 13.404954);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Bratislava', 'SK', 432508, 48.148598, 17.107748);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Budapest', 'HU', 1763913, 47.497913, 19.040236);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Prague', 'CZ', 1298804, 50.075539, 14.437800);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Warsaw', 'PL', 1775933, 52.229675, 21.012230);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Los Angeles', 'US', 4057841, 34.052235, -118.243683);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'New York', 'US', 8601186, 40.712776, -74.005974);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Edinburgh', 'GB', 530741, 55.953251, -3.188267);
+    INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Berlin', 'DE', 3556792, 52.520008, 13.404954);
     ```
 
 ## Getting started
 
-Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
+Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. 
+Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
 
 * GET/READ:
 

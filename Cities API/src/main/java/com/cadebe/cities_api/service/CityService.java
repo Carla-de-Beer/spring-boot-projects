@@ -1,7 +1,6 @@
 package com.cadebe.cities_api.service;
 
-import com.cadebe.cities_api.dao.CityDao;
-import com.cadebe.cities_api.exception.CityNotFoundException;
+import com.cadebe.cities_api.repository.CityDao;
 import com.cadebe.cities_api.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
