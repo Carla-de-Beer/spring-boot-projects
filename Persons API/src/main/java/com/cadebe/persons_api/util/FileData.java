@@ -1,6 +1,7 @@
 package com.cadebe.persons_api.util;
 
 public enum FileData {
+
     DELIMETER(","),
     FILE_NAME("src/main/resources/sourceData/mockData.csv");
 

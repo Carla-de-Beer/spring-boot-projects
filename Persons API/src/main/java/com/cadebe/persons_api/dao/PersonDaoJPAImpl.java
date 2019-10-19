@@ -13,8 +13,12 @@ import java.util.UUID;
 @Repository("JPA_Dao")
 public class PersonDaoJPAImpl implements PersonDao {
 
+    private final PersonJPA PERSON_DAO;
+
     @Autowired
-    private PersonJPA personDao;
+    public PersonDaoJPAImpl(PersonJPA personDao) {
+        this.PERSON_DAO = personDao;
+    }
 
     @Override
     public Person save(Person person) {
@@ -27,12 +31,12 @@ public class PersonDaoJPAImpl implements PersonDao {
         }
 
         PersonDaoJPAImpl.addColorCode(person);
-        return personDao.save(person);
+        return PERSON_DAO.save(person);
     }
 
     @Override
     public List<Person> findAll() {
-        List<Person> list = (List<Person>) this.personDao.findAll();
+        List<Person> list = (List<Person>) this.PERSON_DAO.findAll();
         for (Person person : list) {
             PersonDaoJPAImpl.addColorString(person);
         }
@@ -41,14 +45,14 @@ public class PersonDaoJPAImpl implements PersonDao {
 
     @Override
     public Optional<Person> findById(UUID id) {
-        Optional<Person> person = personDao.findById(id);
+        Optional<Person> person = PERSON_DAO.findById(id);
         person.ifPresent(value -> PersonDaoJPAImpl.addColorString((Person) value));
         return person;
     }
 
     @Override
     public List<Person> findAllByColorPreference(int color) {
-        List<Person> list = (List<Person>) this.personDao.findAll();
+        List<Person> list = (List<Person>) this.PERSON_DAO.findAll();
         List<Person> resultList = new ArrayList<>();
         for (Person person : list) {
             if (person.getColorCode() == color) {
@@ -65,7 +69,7 @@ public class PersonDaoJPAImpl implements PersonDao {
         person.map((x) -> {
             updatedPerson.setId(id);
             updatedPerson.setColorCode(ColorMap.getOrdinalFromString(updatedPerson.getColorName()));
-            personDao.save(updatedPerson);
+            PERSON_DAO.save(updatedPerson);
             return updatedPerson;
         });
         return null;
@@ -73,7 +77,7 @@ public class PersonDaoJPAImpl implements PersonDao {
 
     @Override
     public void deleteById(UUID id) {
-        personDao.deleteById(id);
+        PERSON_DAO.deleteById(id);
     }
 
     private static void addColorString(Person person) {

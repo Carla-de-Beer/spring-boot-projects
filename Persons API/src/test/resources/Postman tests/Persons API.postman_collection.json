@@ -114,12 +114,12 @@
 					"script": {
 						"id": "15ada4a0-01f1-40bb-abc6-891af70cdc29",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
 							"});",
 							"",
-							"pm.test(\"Check if target is an object\", function () { ",
-							"    pm.expect({a: 1}).to.be.an('object');",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Person not found.\");",
 							"});"
 						],
 						"type": "text/javascript"
@@ -254,7 +254,12 @@
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
-							"});"
+							"});",
+							"",
+							"pm.test(\"Check if result is empty array\", function () {",
+							"   pm.expect(pm.response.json().length).to.eql(0);",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -289,8 +294,8 @@
 					"script": {
 						"id": "a6a2e737-3a8b-45e3-b72c-334278f46368",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 204\", function () {",
+							"    pm.response.to.have.status(204);",
 							"});",
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
@@ -333,6 +338,62 @@
 			"response": []
 		},
 		{
+			"name": "Update a person for a given id (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "a6a2e737-3a8b-45e3-b72c-334278f46368",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Person not found\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"firstName\": \"Joe\",\n        \"lastName\": \"Green\",\n        \"zipCode\": \"11068\",\n        \"city\": \"New York\",\n        \"colorName\": \"Purple\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/3cd39892-f26d-11e9-876e-9d26e818bc61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"persons",
+						"3cd39892-f26d-11e9-876e-9d26e818bc61"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Create new person entry",
 			"event": [
 				{
@@ -340,8 +401,8 @@
 					"script": {
 						"id": "a6a2e737-3a8b-45e3-b72c-334278f46368",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
 							"});",
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
@@ -401,7 +462,12 @@
 							"",
 							"pm.test(\"Check if target is an object\", function () { ",
 							"    pm.expect({a: 1}).to.be.an('object');",
-							"});"
+							"});",
+							"",
+							"pm.test(\"Body is correct\", function () {",
+							"   pm.expect(pm.response.json()).to.be.true;",
+							"});",
+							""
 						],
 						"type": "text/javascript"
 					}
@@ -422,6 +488,95 @@
 						"v1",
 						"persons",
 						"{{personId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a person for a given id (person id not in the list)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15ada4a0-01f1-40bb-abc6-891af70cdc29",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"Body is correct\", function () {",
+							"   pm.expect(pm.response.json()).to.be.false;",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/3cd39892-f26d-11e9-876e-9d26e818bc61",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"persons",
+						"3cd39892-f26d-11e9-876e-9d26e818bc61"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a person for a given id (person id not in the list)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "15ada4a0-01f1-40bb-abc6-891af70cdc29",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Person not found\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/persons/a1a1a1a1-a2a2-a3a3-a4a4-a5a5a5a5a5a5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"persons",
+						"a1a1a1a1-a2a2-a3a3-a4a4-a5a5a5a5a5a5"
 					]
 				}
 			},

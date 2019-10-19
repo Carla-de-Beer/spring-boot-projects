@@ -2,7 +2,7 @@
 
 This is a Spring Boot API project that performs the standard set of CRUD calls on a list of person data. The project allows for the option of loading the data either from a locally stored CSV file or from a MySQL database.
 
-The project was built with Java 8 and Maven. Units tests were built with the Spock testing framework. Automated Postman advanced REST client tests are also provided.
+The project is built with Java 11 and Maven. Units tests were built with the Spock testing framework. Automated Postman advanced REST client tests are also provided.
 
 ## Mock data
 
@@ -30,7 +30,7 @@ The `color_code` field denotes a colour value associated with each entry. The co
 6: "White"
 ```
 
-## MySQL database access
+### MySQL database access
 
 To swap the option of locally stored mock data out for the MySQL database access, carry out the following steps:
 
@@ -57,7 +57,8 @@ To swap the option of locally stored mock data out for the MySQL database access
 
 ## Getting started
 
-Download or clone the project. Build the project and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
+Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. 
+Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
 
 * GET/READ:
 

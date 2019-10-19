@@ -13,34 +13,34 @@ import java.util.UUID;
 @Service
 public class PersonService {
 
-    private PersonDao personDao;
+    private final PersonDao PERSON_DAO;
 
     @Autowired
-    public PersonService(@Qualifier("mockDao") PersonDao personDao) {
-        this.personDao = personDao;
+    public PersonService(@Qualifier("JPA_Dao") PersonDao personDao) {
+        this.PERSON_DAO = personDao;
     }
 
     public List<Person> findAll() {
-        return personDao.findAll();
+        return PERSON_DAO.findAll();
     }
 
     public Person save(Person person) {
-        return personDao.save(person);
+        return PERSON_DAO.save(person);
     }
 
     public Person updateById(UUID id, Person person) {
-        return personDao.updateById(id, person);
+        return PERSON_DAO.updateById(id, person);
     }
 
     public Optional findById(UUID id) {
-        return personDao.findById(id);
+        return PERSON_DAO.findById(id);
     }
 
     public List<Person> findAllByColorPreference(int colorCode) {
-        return personDao.findAllByColorPreference(colorCode);
+        return PERSON_DAO.findAllByColorPreference(colorCode);
     }
 
     public void deleteById(UUID id) {
-        personDao.deleteById(id);
+        PERSON_DAO.deleteById(id);
     }
 }
