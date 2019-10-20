@@ -1,14 +1,13 @@
-package com.cadebe.pet_api;
+package com.cadebe.pets_api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class RestTutorialApplication {
+public class PetsAPI_RestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(RestTutorialApplication.class, args);
+        SpringApplication.run(PetsAPI_RestApplication.class, args);
     }
 
 }

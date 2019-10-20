@@ -1,13 +1,10 @@
-package com.cadebe.pet_api.dao;
+package com.cadebe.pets_api.dao;
 
-import com.cadebe.pet_api.model.Pet;
+import com.cadebe.pets_api.model.Pet;
 import org.bson.types.ObjectId;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Repository("mockDao")
 public class PetDaoMockImpl implements PetDao {
@@ -17,17 +14,21 @@ public class PetDaoMockImpl implements PetDao {
     public PetDaoMockImpl() {
         this.database = new HashMap<>();
         ObjectId id = ObjectId.get();
-        this.database.put(id, new Pet(id, "Rex", "dog", "pitbull"));
+
+        this.database.put(id, Pet.builder()
+                .name("Rex")
+                .species("dog")
+                .breed("pitbull").build());
     }
 
     @Override
-    public List<Pet> getAllPets() {
-        return new ArrayList<>(database.values());
+    public Optional<List<Pet>> getAllPets() {
+        return Optional.of(new ArrayList<>(database.values()));
     }
 
     @Override
-    public Pet getPetById(ObjectId id) {
-        return database.get(id);
+    public Optional<Pet> getPetById(ObjectId id) {
+        return Optional.ofNullable(database.get(id));
     }
 
     @Override
@@ -35,9 +36,9 @@ public class PetDaoMockImpl implements PetDao {
     }
 
     @Override
-    public Pet insertNewPet(Pet pet) {
+    public Optional<Pet> insertNewPet(Pet pet) {
         database.put(pet.getObjectId(), pet);
-        return pet;
+        return Optional.of(pet);
     }
 
     @Override

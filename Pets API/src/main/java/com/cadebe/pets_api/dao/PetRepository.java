@@ -1,9 +1,12 @@
-package com.cadebe.pet_api.dao;
+package com.cadebe.pets_api.dao;
 
-import com.cadebe.pet_api.model.Pet;
+import com.cadebe.pets_api.model.Pet;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
+import java.util.Optional;
+
 public interface PetRepository extends MongoRepository<Pet, String> {
-    Pet findById(ObjectId _id);
+
+    Optional<Pet> findById(ObjectId _id);
 }
