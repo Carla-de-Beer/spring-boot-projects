@@ -1,12 +1,12 @@
 # Pets API
 
-This is a Spring Boot API project that displays data related to a list of pets. This data is manipulated by means of the standard set of CRUD calls. The project allows for the option of loading data either from a locally stored CSV file or from a MySQL database. 
+This is a Spring Boot API project that displays data related to a list of pets. This data is manipulated by means of the standard set of CRUD calls. The project allows for the option of loading either locally stored in-memory data or from a MongoDB database (see notes below). 
 
 The project is built with Java 11 and Maven. 
 
 ## Getting started
 
-To swap the option of locally stored mock data out for the MySQL database access, carry out the following steps:
+To swap the option of locally stored mock data out for the MongoDB database access, carry out the following steps:
 
 * Inside the PetService class, change the `@Qualifier()` property from `"mockDao"` to `"mongoDbDao"`.
 * Create a MongoDB database, activate its server, and populate it with data via the following commands:
