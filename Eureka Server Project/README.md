@@ -1,6 +1,6 @@
 # Eureka Server Project
 
-This is an elementary Spring Boot microservices project that registers a client application with a Eureka server. 
+This is a simple Spring Boot microservices project that registers a client application with a Eureka server. 
 
 The project is built with Java 11 and Maven. 
 
