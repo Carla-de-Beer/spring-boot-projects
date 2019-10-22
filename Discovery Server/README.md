@@ -1,4 +1,4 @@
-# Eureka Server Project
+# Discovery Server
 
 This is a simple Spring Boot microservices project that registers a client application with a Eureka server. 
 
