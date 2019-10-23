@@ -5,7 +5,7 @@ This is a Spring Boot API project that displays data related to cities. The city
 The project is built with Java 11 and Maven. Swagger2 is used to generate the API documentation.
 
 
-## Getting started
+## Getting started: MySQL database
 
 * Create a MySQL database, activate its server, and populate it with data via the following SQL query:
 
@@ -30,10 +30,12 @@ The project is built with Java 11 and Maven. Swagger2 is used to generate the AP
     INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Berlin', 'DE', 3556792, 52.520008, 13.404954);
     ```
 
-## Getting started
+## Getting started: Project
 
-Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. 
-Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
+Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file.
+Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`.
+
+The API can be called with any of the following cURL CRUD-based requests:
 
 * GET/READ:
 
