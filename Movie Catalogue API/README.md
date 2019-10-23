@@ -1,6 +1,6 @@
-# Movie Catalogue
+# Movie Catalogue API
 
-This is a Spring Boot microservices project displaying movie data with reference to the ratings provided by a user. The data is both locally stored, and obtained from the external API [The movie DB](https://www.themoviedb.org/documentation/api).
+This is a Spring Boot microservices API project displaying movie data with reference to the ratings provided by a user. The data is both locally stored, and obtained from the external API [The movie DB](https://www.themoviedb.org/documentation/api).
 
 The project is based on the Java Brains [Spring Boot Microservices Levels 1 & 2](https://www.youtube.com/watch?v=y8IQb4ofjDo&list=PLqq-6Pq4lTTZSKAFG6aCDVDP86Qx4lNas) tutorials, and is built with Java 11 and Maven. Service discovery is provided by a Eureka server and Hystrix is used for circuit breaker.
 
