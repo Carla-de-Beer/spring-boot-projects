@@ -1,10 +1,29 @@
 {
 	"info": {
-		"_postman_id": "<ENTER_POSTMAN_ID>",
+		"_postman_id": "ddd257e0-ba0e-44ed-9f05-92bf4d265359",
 		"name": "GitHub Reader",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "Actuator data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/actuator",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"actuator"
+					]
+				}
+			},
+			"response": []
+		},
 		{
 			"name": "Get index page",
 			"event": [
