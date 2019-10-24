@@ -9,6 +9,8 @@ spring:
       ddl-auto: update
     generate-ddl: true
     show-sql: true
+    database: "mysql"
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   main:
     banner-mode: "off"
 
@@ -16,3 +18,20 @@ logging:
   level:
     org:
       springframework: ERROR
+
+management:
+  endpoint:
+    beans:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      showDetails: "always"
+  server:
+    port: 9001
+    servlet:
+      contextPath: "/api/v1/cities/"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

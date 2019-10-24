@@ -6,7 +6,6 @@ The project is built with Java 11 and Maven. Swagger2 is used to generate the AP
 
 
 ## Getting started
-### MySQL database
 
 * Create a MySQL database, activate its server, and populate it with data via the following SQL query:
 
@@ -31,12 +30,10 @@ The project is built with Java 11 and Maven. Swagger2 is used to generate the AP
     INSERT INTO cities values(unhex(replace(uuid(),'-','')), 'Berlin', 'DE', 3556792, 52.520008, 13.404954);
     ```
 
-### Project
+## Getting started
 
-Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file.
-Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`.
-
-The API can be called with any of the following cURL CRUD-based requests:
+Download or clone the project. Add a database username and password to the `src/main/resources/application.properties` file. 
+Build the project with the command `mvn clean install` and start the project server by running the command `mvn spring-boot:run`. The API can be called with any of the following cURL CRUD-based requests:
 
 * GET/READ:
 
@@ -59,7 +56,7 @@ The API can be called with any of the following cURL CRUD-based requests:
 
   * ```curl -i -X DELETE http://localhost:8080/api/v1/cities/<id>```
 
-Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/Postman\ tests/Cities\ API.man_collection.json`.
+Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/com/cadebe/cities_api/Postman\ tests/Cities\ API.postman_collection.json`.
 
 
 ## API Documentation

@@ -38,6 +38,29 @@
 			"response": []
 		},
 		{
+			"name": "Actuator data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/v1/cities/actuator/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"actuator",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get all cities",
 			"event": [
 				{
@@ -136,7 +159,7 @@
 					"script": {
 						"id": "83332cb1-2db2-4ace-b4ed-2d49bc93ecb1",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
 							"});",
 							"",
@@ -230,7 +253,7 @@
 					"script": {
 						"id": "9e6c7744-8457-49de-bf61-54f441f6cd65",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {",
+							"pm.test(\"Status code is 404\", function () {",
 							"    pm.response.to.have.status(404);",
 							"});",
 							"",
@@ -386,7 +409,7 @@
 			"response": []
 		},
 		{
-			"name": "Get all cities Copy",
+			"name": "Get all cities (set new variables)",
 			"event": [
 				{
 					"listen": "test",
@@ -408,12 +431,9 @@
 							"});",
 							"",
 							"",
-							" console.log(pm.response.json());",
-							"",
 							"function findParis() {",
 							"    for (var i = 0; i < pm.response.json().length; ++i) {",
 							"      if (pm.response.json()[i].name === \"Paris\") {",
-							"          console.log(pm.response.json()[i]);",
 							"          return pm.response.json()[i].id;",
 							"      } ",
 							"    }",
@@ -421,7 +441,7 @@
 							"}",
 							"",
 							"postman.setGlobalVariable(\"ParisId\", findParis());",
-							"console.log(findParis());",
+							"",
 							""
 						],
 						"type": "text/javascript"
