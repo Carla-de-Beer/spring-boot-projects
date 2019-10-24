@@ -2,8 +2,16 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/persons_colors_db?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC"
-    username: "root"
-    password: "tyCv2-672Kk-Yqs7p-mn83S"
+    username: <username>
+    password: <password>
+    testOnBorrow: true
+    testWhileIdle: true
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: SELECT 1
+    max-active: 15
+    max-idle: 10
+    max-wait: 8000
   jpa:
     hibernate:
       ddl-auto: update
@@ -16,3 +24,20 @@ logging:
   level:
     org:
       springframework: ERROR
+
+management:
+  endpoint:
+    beans:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      showDetails: "always"
+  server:
+    port: 9001
+    servlet:
+      contextPath: "/api/v1/persons/"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

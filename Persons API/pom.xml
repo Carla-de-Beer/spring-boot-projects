@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>persons_api</artifactId>
+    <artifactId>persons-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>persons_api</name>
+    <name>persons-api</name>
     <description>Spring Boot Persons API project with MySQL</description>
 
     <properties>
@@ -26,6 +26,10 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
