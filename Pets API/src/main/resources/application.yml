@@ -7,3 +7,20 @@ spring:
       #spring.data.mongodb.username=[username]
       #spring.data.mongodb.password=[password]
       database: pet_store
+
+management:
+  endpoint:
+    beans:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      showDetails: "always"
+  server:
+    port: 9001
+    servlet:
+      contextPath: "/api/v1/pets/"
+  endpoints:
+    web:
+      exposure:
+        include: "*"

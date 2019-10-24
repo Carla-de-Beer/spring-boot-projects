@@ -1,12 +1,12 @@
 # Pets API
 
-This is a Spring Boot API project that displays data related to a list of pets. This data is manipulated by means of the standard set of CRUD calls. The project allows for the option of loading either locally stored in-memory data or from a MongoDB database (see notes below). 
+This is a Spring Boot API project that displays data related to a list of pets. This data is manipulated by means of the standard set of CRUD calls. The project allows for the option of loading data either from a locally stored CSV file or from a MySQL database. 
 
 The project is built with Java 11 and Maven. 
 
 ## Getting started
 
-To swap the option of locally stored mock data out for the MongoDB database access, carry out the following steps:
+To swap the option of locally stored mock data out for the MySQL database access, carry out the following steps:
 
 * Inside the PetService class, change the `@Qualifier()` property from `"mockDao"` to `"mongoDbDao"`.
 * Create a MongoDB database, activate its server, and populate it with data via the following commands:
@@ -49,7 +49,7 @@ Build the project with the command `mvn clean install` and start the project ser
 * DELETE:
   * ```curl -i -X DELETE http://localhost:8080/api/v1/pets/<ObjectId>```
   
-  Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/Pets\ API.postman_collection.json`.
+  Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/com/cadebe/pets_api/Postman\ Tests/Pets\ API.postman_collection.json`.
 
 <p align="center">
   <img src="images/screenShot-01.png"/>

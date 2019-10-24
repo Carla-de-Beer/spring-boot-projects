@@ -6,6 +6,29 @@
 	},
 	"item": [
 		{
+			"name": "Actuator data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9001/api/v1/pets/actuator/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9001",
+					"path": [
+						"api",
+						"v1",
+						"pets",
+						"actuator",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Get all pets",
 			"event": [
 				{
