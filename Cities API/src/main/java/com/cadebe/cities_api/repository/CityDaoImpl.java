@@ -39,7 +39,18 @@ public class CityDaoImpl implements CityDao {
     }
 
     @Override
+    public Optional<List<City>> findByCountryCode(String countryCode) {
+        return CITY_DAO.findByCountryCode(countryCode);
+    }
+
+    @Override
+    public Optional<List<City>> findAllCitiesWithPopulationGreaterThanX(long size) {
+        return CITY_DAO.findAllCitiesWithPopulationGreaterThanX(size);
+    }
+
+    @Override
     public City save(City city) {
+
         return CITY_DAO.save(city);
     }
 

@@ -59,8 +59,7 @@ public class CitiesController {
         UUID uuid = UUID.fromString(id);
         Optional<City> city = CITY_SERVICE.findById(uuid);
         if (city.isEmpty()) {
-            ErrorHandler<UUID> eh = new ErrorHandler<>();
-            eh.handelError(uuid);
+            handelError(uuid);
             return new ResponseEntity<>(generateErrorMessage("city.not.found") + ".", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(city.get(), HttpStatus.OK);
@@ -72,8 +71,29 @@ public class CitiesController {
     public ResponseEntity<Object> findByName(@ApiParam(value = "Name value for city to be retrieved", required = true)
                                              @PathVariable("name") String name) {
         Optional<List<City>> city = CITY_SERVICE.findByName(name);
-        ErrorHandler<String> eh = new ErrorHandler<>();
-        eh.handelError(name);
+        handelError(name);
+        return city.<ResponseEntity<Object>>map(cities -> new ResponseEntity<>(cities, HttpStatus.OK)).orElseGet(() ->
+                new ResponseEntity<>(generateErrorMessage("city.not.found") + ".", HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, path = "country/{countryCode}")
+    @ExceptionHandler(value = CityNotFoundException.class)
+    @ApiOperation(value = "Finds the list of cities for a given country code", notes = "Returns a list of cities for a given country code", response = City.class)
+    public ResponseEntity<Object> findByCountryCode(@ApiParam(value = "Country name value for cities to be retrieved", required = true)
+                                                    @PathVariable("countryCode") String countryCode) {
+        Optional<List<City>> city = CITY_SERVICE.findByCountryCode(countryCode);
+        handelError(countryCode);
+        return city.<ResponseEntity<Object>>map(cities -> new ResponseEntity<>(cities, HttpStatus.OK)).orElseGet(() ->
+                new ResponseEntity<>(generateErrorMessage("city.not.found") + ".", HttpStatus.NOT_FOUND));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE, path = "populationSize/{size}")
+    @ExceptionHandler(value = CityNotFoundException.class)
+    @ApiOperation(value = "Finds the list of cities greater than a given parameter", notes = "Returns a list of cities greater than a given parameter", response = City.class)
+    public ResponseEntity<Object> findAllCitiesWithPopulationGreaterThanX(@ApiParam(value = "Population size value for cities to be retrieved", required = true)
+                                                                          @PathVariable("size") long size) {
+        Optional<List<City>> city = CITY_SERVICE.findAllCitiesWithPopulationGreaterThanX(size);
+        handelError(Long.toString(size));
         return city.<ResponseEntity<Object>>map(cities -> new ResponseEntity<>(cities, HttpStatus.OK)).orElseGet(() ->
                 new ResponseEntity<>(generateErrorMessage("city.not.found") + ".", HttpStatus.NOT_FOUND));
     }
@@ -84,8 +104,7 @@ public class CitiesController {
     public ResponseEntity<Object> update(@PathVariable("id") String id, @RequestBody City city) {
         UUID uuid = UUID.fromString(id);
         if (CITY_SERVICE.findById(uuid).isEmpty()) {
-            ErrorHandler<UUID> eh = new ErrorHandler<>();
-            eh.handelError(uuid);
+            handelError(uuid);
             return new ResponseEntity<>(generateErrorMessage("city.not.found") + ".", HttpStatus.NOT_FOUND);
         }
         try {
@@ -100,8 +119,7 @@ public class CitiesController {
     public ResponseEntity<Object> deleteById(@PathVariable("id") String id) {
         UUID uuid = UUID.fromString(id);
         if (CITY_SERVICE.findById(uuid).isEmpty()) {
-            ErrorHandler<UUID> eh = new ErrorHandler<>();
-            eh.handelError(uuid);
+            handelError(uuid);
             return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
         }
         CITY_SERVICE.deleteById(uuid);
@@ -112,9 +130,7 @@ public class CitiesController {
         return MESSAGE_SOURCE.getMessage(i18n, null, LocaleContextHolder.getLocale());
     }
 
-    private static class ErrorHandler<T> {
-        private void handelError(T uuid) {
-            log.error("Received id {} is not present and the database could not be updated", uuid);
-        }
+    private <T> void handelError(T uuid) {
+        log.error("Received id {} is not present and the database could not be updated", uuid);
     }
 }

@@ -14,6 +14,10 @@ public interface CityDao {
 
     Optional<List<City>> findByName(String name);
 
+    Optional<List<City>> findByCountryCode(String countryCode);
+
+    Optional<List<City>> findAllCitiesWithPopulationGreaterThanX(long size);
+
     City save(City city);
 
     City update(City city);

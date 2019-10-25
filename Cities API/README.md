@@ -40,6 +40,8 @@ Build the project with the command `mvn clean install` and start the project ser
   * ```curl -i http://localhost:8080/api/v1/cities/```
   * ```curl -i http://localhost:8080/api/v1/cities/<id>```
   * ```curl -i http://localhost:8080/api/v1/cities/name/<cityName>```
+  * ```curl -i http://localhost:8080/api/v1/cities/country/<countryCode>```
+  * ```curl -i http://localhost:8080/api/v1/cities/population/<size>```
 
 
 * CREATE/ADD:

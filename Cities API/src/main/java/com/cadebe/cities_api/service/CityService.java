@@ -32,6 +32,14 @@ public class CityService {
         return this.CITY_DAO.findByName(name);
     }
 
+    public Optional<List<City>> findByCountryCode(String countryCode) {
+        return this.CITY_DAO.findByCountryCode(countryCode);
+    }
+
+    public Optional<List<City>> findAllCitiesWithPopulationGreaterThanX(long size) {
+        return this.CITY_DAO.findAllCitiesWithPopulationGreaterThanX(size);
+    }
+
     public City save(City city) {
         return this.CITY_DAO.save(city);
     }

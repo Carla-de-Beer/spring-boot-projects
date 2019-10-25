@@ -13,6 +13,10 @@ import java.util.UUID;
 @Repository
 public interface CityJPA extends CrudRepository<City, UUID> {
 
-    @Query(value = "SELECT * FROM cities WHERE name = ?1", nativeQuery = true)
     Optional<List<City>> findByName(@Param("name") String name);
+
+    Optional<List<City>> findByCountryCode(@Param("countryCode") String countryCode);
+
+    @Query(value = "SELECT * FROM cities WHERE population > ?1", nativeQuery = true)
+    Optional<List<City>> findAllCitiesWithPopulationGreaterThanX(long size);
 }

@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/v2/api-docs",
+			"name": "Swagger2 api-docs",
 			"event": [
 				{
 					"listen": "test",
@@ -295,15 +295,61 @@
 			"response": []
 		},
 		{
-			"name": "Save new city (Paris)",
+			"name": "Get all cities for a given country code",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "ba0cfdfb-a8cc-4588-acb6-fa0ffba59aff",
+						"id": "177f8f4b-f71a-4c21-b3e8-1d98f60fd506",
 						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/country/us",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"country",
+						"us"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all cities for a given country code (invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "2b34ed16-d3cc-4e24-b5df-d4b21f9a0faf",
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
 							"});",
 							"",
 							"pm.test(\"Content-Type header is present\", function () {",
@@ -314,28 +360,19 @@
 							"    pm.expect({a: 1}).to.be.an('object');",
 							"});",
 							"",
-							""
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"City not found.\");",
+							"});"
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Paris\",\n\t\"countryCode\": \"FR\",\n\t\"population\": 12532901,\n    \"longitude\": 0.0,\n    \"latitude\": 0.0\n}"
-				},
+				"method": "GET",
+				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/cities/",
+					"raw": "http://localhost:8080/api/v1/cities/country/huu",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -345,19 +382,66 @@
 						"api",
 						"v1",
 						"cities",
-						""
+						"country",
+						"huu"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Save new city (Paris; trying to save again)",
+			"name": "Get all cities with a population size larger than the given value",
 			"event": [
 				{
 					"listen": "test",
 					"script": {
-						"id": "20f90fee-bc8d-4a6f-8e49-21ac2be1ddcd",
+						"id": "b6f4bbd9-7548-4cf1-ad07-454fdd6e588c",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content-Type header is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Check if target is an object\", function () { ",
+							"    pm.expect({a: 1}).to.be.an('object');",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/cities/populationSize/3000000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"cities",
+						"populationSize",
+						"3000000"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save new city (Paris)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ba0cfdfb-a8cc-4588-acb6-fa0ffba59aff",
 						"exec": [
 							"pm.test(\"Status code is 201\", function () {",
 							"    pm.response.to.have.status(201);",
@@ -433,7 +517,7 @@
 							"",
 							"function findParis() {",
 							"    for (var i = 0; i < pm.response.json().length; ++i) {",
-							"      if (pm.response.json()[i].name === \"Paris\") {",
+							"      if (pm.response.json()[i].name === \"Paris\" && pm.response.json()[i].countryCode === \"FR\") {",
 							"          return pm.response.json()[i].id;",
 							"      } ",
 							"    }",
@@ -616,61 +700,6 @@
 						"v1",
 						"cities",
 						"d2992100-d58e-11e9-b075-ef972a09af52"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Save new city (Bratislava)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "03438b76-8891-4366-85eb-1935c6770630",
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {",
-							"    pm.response.to.have.status(201);",
-							"});",
-							"",
-							"pm.test(\"Content-Type header is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"pm.test(\"Check if target is an object\", function () { ",
-							"    pm.expect({a: 1}).to.be.an('object');",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Content-Type",
-						"name": "Content-Type",
-						"value": "application/json",
-						"type": "text"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Bratislava\",\n\t\"countryCode\": \"SK\",\n\t\"population\": 432000,\n    \"longitude\": 48.148598,\n    \"latitude\": 17.107748\n}"
-				},
-				"url": {
-					"raw": "http://localhost:8080/api/v1/cities/",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"api",
-						"v1",
-						"cities",
-						""
 					]
 				}
 			},
