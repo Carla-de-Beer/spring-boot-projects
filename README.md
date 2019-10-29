@@ -7,7 +7,6 @@ This repository contains a number of Spring Boot API and MVC projects.
 
 The following is a list of the projects included in this repository:
 
-* [Cities API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/cities-api) A Spring Boot API project displaying city data, operating on a MySQL database.
 * [Discovery Server:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/discovery-server) A simple Spring Boot microservices project that registers a client application with a Eureka server.
 * [Movie Catalogue API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/movie-catalogue-api) A Spring Boot microservices API project displaying movie data with reference to the ratings provided by a user.
 * [Persons API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/persons-api) A Spring Boot API project operating on either locally stored mock data or a connection to a MySQL database.
