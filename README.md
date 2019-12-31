@@ -9,5 +9,6 @@ The following is a list of the projects included in this repository:
 
 * [Discovery Server:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/discovery-server) A simple Spring Boot microservices project that registers a client application with a Eureka server.
 * [Movie Catalogue API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/movie-catalogue-api) A Spring Boot microservices API project displaying movie data with reference to the ratings provided by a user.
+* [Multi-Module Maven Project:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/multi-module-maven) A Maven microservices project example.
 * [Persons API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/persons-api) A Spring Boot API project operating on either locally stored mock data or a connection to a MySQL database.
 * [Pets API:](https://github.com/Carla-de-Beer/Spring-Boot-Projects/tree/master/pets-api) A Spring Boot API project operating on either locally stored mock data or a connection to a MongoDB database.
