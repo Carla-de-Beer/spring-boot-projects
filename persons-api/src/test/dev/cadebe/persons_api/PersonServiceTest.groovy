@@ -1,7 +1,7 @@
-package groovy.com.cadebe.persons_api
+package dev.cadebe.persons_api
 
-import com.cadebe.persons_api.dao.PersonDaoMockImpl
-import com.cadebe.persons_api.service.PersonService
+import dev.cadebe.persons_api.dao.PersonDaoMockImpl
+import dev.cadebe.persons_api.service.PersonService
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -13,8 +13,6 @@ class PersonServiceTest extends Specification {
     PersonService personService = new PersonService(personDao)
 
     def "PersonService getAllPersons()"() {
-        given:
-
         when: "calling getAllPersons()"
         def result = personService.findAll()
 
@@ -24,8 +22,6 @@ class PersonServiceTest extends Specification {
     }
 
     def "PersonService getAllPersonsByColor()"() {
-        given:
-
         when: "calling getAllPersonsByColor()"
         def result = personService.findAllByColorPreference(colorCode)
 

@@ -1,6 +1,6 @@
-package com.cadebe.persons_api.util;
+package dev.cadebe.persons_api.util;
 
-import com.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.model.Person;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

@@ -1,7 +1,7 @@
-package com.cadebe.persons_api.dao;
+package dev.cadebe.persons_api.dao;
 
-import com.cadebe.persons_api.model.Person;
-import com.cadebe.persons_api.util.ColorMap;
+import dev.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.util.ColorMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.cadebe.persons_api.service;
+package dev.cadebe.persons_api.service;
 
-import com.cadebe.persons_api.dao.PersonDao;
-import com.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.dao.PersonDao;
+import dev.cadebe.persons_api.model.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;

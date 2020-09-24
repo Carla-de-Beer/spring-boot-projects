@@ -1,4 +1,4 @@
-package com.cadebe.persons_api.exception;
+package dev.cadebe.persons_api.exception;
 
 import lombok.NoArgsConstructor;
 

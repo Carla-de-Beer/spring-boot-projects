@@ -1,8 +1,8 @@
-package com.cadebe.persons_api.controller;
+package dev.cadebe.persons_api.controller;
 
-import com.cadebe.persons_api.model.Person;
-import com.cadebe.persons_api.service.PersonService;
-import com.cadebe.persons_api.util.ColorMap;
+import dev.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.service.PersonService;
+import dev.cadebe.persons_api.util.ColorMap;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;

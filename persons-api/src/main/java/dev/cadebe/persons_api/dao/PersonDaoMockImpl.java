@@ -1,10 +1,10 @@
-package com.cadebe.persons_api.dao;
+package dev.cadebe.persons_api.dao;
 
-import com.cadebe.persons_api.model.Person;
-import com.cadebe.persons_api.util.CSVReader;
-import com.cadebe.persons_api.util.CSVWriter;
-import com.cadebe.persons_api.util.ColorMap;
-import com.cadebe.persons_api.util.FileData;
+import dev.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.util.CSVReader;
+import dev.cadebe.persons_api.util.CSVWriter;
+import dev.cadebe.persons_api.util.ColorMap;
+import dev.cadebe.persons_api.util.FileData;
 import org.springframework.stereotype.Repository;
 
 import java.io.BufferedWriter;

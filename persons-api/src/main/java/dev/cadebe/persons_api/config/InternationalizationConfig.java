@@ -1,4 +1,4 @@
-package com.cadebe.persons_api.config;
+package dev.cadebe.persons_api.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -17,14 +17,14 @@ public class InternationalizationConfig implements WebMvcConfigurer {
 
     @Bean(name = "localeResolver")
     public LocaleResolver localeResolver() {
-        SessionLocaleResolver slr = new SessionLocaleResolver();
+        var slr = new SessionLocaleResolver();
         slr.setDefaultLocale(Locale.ENGLISH);
         return slr;
     }
 
     @Bean
     public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+        var messageSource = new ReloadableResourceBundleMessageSource();
         messageSource.setBasename("classpath:messages/messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
@@ -32,7 +32,7 @@ public class InternationalizationConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        LocaleChangeInterceptor localeChangeInterceptor = new LocaleChangeInterceptor();
+        var localeChangeInterceptor = new LocaleChangeInterceptor();
         localeChangeInterceptor.setParamName("language");
         registry.addInterceptor(localeChangeInterceptor);
     }

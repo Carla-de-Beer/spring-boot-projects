@@ -1,6 +1,6 @@
-package groovy.com.cadebe.persons_api
+package dev.cadebe.persons_api
 
-import com.cadebe.persons_api.util.ColorMap
+import dev.cadebe.persons_api.util.ColorMap
 import spock.lang.Specification
 import spock.lang.Subject
 
@@ -10,8 +10,6 @@ class ColorMapTest extends Specification {
     def colorMap = new ColorMap()
 
     def "ColorMap getOrdinalFromString()"() {
-        given:
-
         when: "calling getOrdinalFromString()"
         int result = ColorMap.getOrdinalFromString(colorName)
 
@@ -33,8 +31,6 @@ class ColorMapTest extends Specification {
     }
 
     def "ColorMap getStringFromOrdinal()"() {
-        given:
-
         when: "calling getStringFromOrdinal()"
         String result = ColorMap.getStringFromOrdinal(colorCode)
 

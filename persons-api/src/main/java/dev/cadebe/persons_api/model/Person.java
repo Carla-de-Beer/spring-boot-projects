@@ -1,4 +1,4 @@
-package com.cadebe.persons_api.model;
+package dev.cadebe.persons_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;

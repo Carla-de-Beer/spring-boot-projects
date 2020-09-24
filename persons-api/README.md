@@ -82,7 +82,7 @@ Build the project with the command `mvn clean install` and start the project ser
 
   * ```curl -i -X DELETE http://localhost:8080/api/v1/persons/<personId>```
 
-Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/com/cadebe/persons_api/Postman\ tests/Persons\ API.postman_collection.json`.
+Alternatively, import and run the Postman test collection. These can be found under `src/test/resources/dev/cadebe/persons_api/Postman\ tests/Persons\ API.postman_collection.json`.
 
 ## Troubleshooting
 If using the locally stored dataset and the Spring Boot server runs into errors at the time of starting up, check the CSV file for (syntax) errors.

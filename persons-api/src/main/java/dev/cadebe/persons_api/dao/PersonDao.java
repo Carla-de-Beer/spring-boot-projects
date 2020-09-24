@@ -1,6 +1,6 @@
-package com.cadebe.persons_api.dao;
+package dev.cadebe.persons_api.dao;
 
-import com.cadebe.persons_api.model.Person;
+import dev.cadebe.persons_api.model.Person;
 
 import java.util.List;
 import java.util.Optional;

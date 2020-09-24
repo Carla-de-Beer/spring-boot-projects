@@ -1,4 +1,4 @@
-package com.cadebe.persons_api.util;
+package dev.cadebe.persons_api.util;
 
 import lombok.NoArgsConstructor;
 
