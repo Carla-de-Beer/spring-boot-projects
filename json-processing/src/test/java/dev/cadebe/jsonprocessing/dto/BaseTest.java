@@ -1,4 +1,4 @@
-package com.cadebe.jsonprocessing.dto;
+package dev.cadebe.jsonprocessing.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

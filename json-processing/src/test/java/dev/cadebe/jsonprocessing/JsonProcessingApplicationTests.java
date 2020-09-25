@@ -1,4 +1,4 @@
-package com.cadebe.jsonprocessing;
+package dev.cadebe.jsonprocessing;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

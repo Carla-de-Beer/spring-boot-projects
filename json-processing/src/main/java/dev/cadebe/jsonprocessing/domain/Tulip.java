@@ -1,4 +1,4 @@
-package com.cadebe.jsonprocessing.domain;
+package dev.cadebe.jsonprocessing.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

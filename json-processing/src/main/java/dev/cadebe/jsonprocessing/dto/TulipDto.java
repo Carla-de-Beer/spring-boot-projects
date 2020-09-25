@@ -1,4 +1,4 @@
-package com.cadebe.jsonprocessing.dto;
+package dev.cadebe.jsonprocessing.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
