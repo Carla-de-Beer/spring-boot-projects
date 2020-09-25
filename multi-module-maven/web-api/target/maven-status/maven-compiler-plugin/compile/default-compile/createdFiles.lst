@@ -1,2 +1,2 @@
-com/cadebe/domain/ObjectFactory.class
-com/cadebe/domain/UserCommand.class
+dev/cadebe/domain/UserCommand.class
+dev/cadebe/domain/ObjectFactory.class

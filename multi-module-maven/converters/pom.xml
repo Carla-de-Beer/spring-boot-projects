@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>multi-module-maven</artifactId>
-        <groupId>com.cadebe</groupId>
+        <groupId>dev.cadebe</groupId>
         <version>${revision}</version>
     </parent>
 
@@ -14,12 +14,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cadebe</groupId>
+            <groupId>dev.cadebe</groupId>
             <artifactId>jpa-entities</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.cadebe</groupId>
+            <groupId>dev.cadebe</groupId>
             <artifactId>web-api</artifactId>
             <version>${revision}</version>
         </dependency>

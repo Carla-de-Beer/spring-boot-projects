@@ -6,7 +6,7 @@
 
     <parent>
         <artifactId>multi-module-maven</artifactId>
-        <groupId>com.cadebe</groupId>
+        <groupId>dev.cadebe</groupId>
         <version>${revision}</version>
     </parent>
 

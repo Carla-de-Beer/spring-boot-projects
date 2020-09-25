@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>multi-module-maven</artifactId>
-        <groupId>com.cadebe</groupId>
+        <groupId>dev.cadebe</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -13,17 +13,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.cadebe</groupId>
+            <groupId>dev.cadebe</groupId>
             <artifactId>jpa-entities</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.cadebe</groupId>
+            <groupId>dev.cadebe</groupId>
             <artifactId>web-api</artifactId>
             <version>${revision}</version>
         </dependency>
         <dependency>
-            <groupId>com.cadebe</groupId>
+            <groupId>dev.cadebe</groupId>
             <artifactId>converters</artifactId>
             <version>${revision}</version>
         </dependency>

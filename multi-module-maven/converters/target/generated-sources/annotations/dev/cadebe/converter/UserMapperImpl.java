@@ -1,13 +1,13 @@
-package com.cadebe.converter;
+package dev.cadebe.converter;
 
-import com.cadebe.domain.UserCommand;
-import com.cadebe.entities.User;
-import com.cadebe.entities.User.UserBuilder;
+import dev.cadebe.domain.UserCommand;
+import dev.cadebe.entities.User;
+import dev.cadebe.entities.User.UserBuilder;
 import javax.annotation.processing.Generated;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2019-12-31T18:07:14+0200",
+    date = "2020-09-25T23:57:32+0200",
     comments = "version: 1.3.1.Final, compiler: javac, environment: Java 11.0.5 (Oracle Corporation)"
 )
 public class UserMapperImpl implements UserMapper {

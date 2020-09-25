@@ -6,7 +6,7 @@
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:schemaBindings>
-                <jaxb:package name="com.cadebe.domain"/>
+                <jaxb:package name="dev.cadebe.domain"/>
             </jaxb:schemaBindings>
         </xsd:appinfo>
     </xsd:annotation>

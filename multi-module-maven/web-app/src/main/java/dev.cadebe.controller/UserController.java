@@ -1,8 +1,8 @@
-package com.cadebe.controller;
+package dev.cadebe.controller;
 
-import com.cadebe.converter.UserMapper;
-import com.cadebe.domain.UserCommand;
-import com.cadebe.entities.User;
+import dev.cadebe.converter.UserMapper;
+import dev.cadebe.domain.UserCommand;
+import dev.cadebe.entities.User;
 
 public class UserController {
 

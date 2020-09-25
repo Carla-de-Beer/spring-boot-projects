@@ -1,7 +1,7 @@
-package com.cadebe.converter;
+package dev.cadebe.converter;
 
-import com.cadebe.domain.UserCommand;
-import com.cadebe.entities.User;
+import dev.cadebe.domain.UserCommand;
+import dev.cadebe.entities.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

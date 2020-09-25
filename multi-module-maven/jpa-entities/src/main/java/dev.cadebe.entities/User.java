@@ -1,4 +1,4 @@
-package com.cadebe.entities;
+package dev.cadebe.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
