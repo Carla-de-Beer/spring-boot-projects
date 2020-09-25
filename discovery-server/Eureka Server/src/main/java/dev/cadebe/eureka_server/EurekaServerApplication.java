@@ -1,4 +1,4 @@
-package com.cadebe.eureka_server;
+package dev.cadebe.eureka_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

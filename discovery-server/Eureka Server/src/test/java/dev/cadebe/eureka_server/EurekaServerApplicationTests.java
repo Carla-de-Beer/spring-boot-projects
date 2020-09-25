@@ -1,4 +1,4 @@
-package com.cadebe.eureka_server;
+package dev.cadebe.eureka_server;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
