@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: dev.cadebe.ratings_data_service.RatingsDataServiceApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 9.513 s - in dev.cadebe.ratings_data_service.RatingsDataServiceApplicationTests
