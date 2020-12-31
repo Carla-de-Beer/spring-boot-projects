@@ -1,6 +1,6 @@
 # Spring AOP Example
 
-This is a simple Spring Boot demo project demonstrating Aspect Oriented Programming (AOP) functionalities.
+This is a simple Spring Boot project demonstrating Aspect Oriented Programming (AOP) functionalities.
 
 The project is built with Java 11 and Maven.
 
@@ -9,22 +9,21 @@ The project is built with Java 11 and Maven.
 AOP is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns. It
 does so by adding additional behaviour to existing code without modification of the code itself. With AOP, you just
 decorate the needed behaviour without touching the code base, thereby allowing you to intercept methods that may have
-been written by third parties. In other words, Spring AOP provides a non-intrusive way of altering our components, even
+been written by third parties. In other words, Spring AOP provides a non-intrusive way of altering components, even
 if we don't own the code for that component.
 
 * **Join Point**: In Spring this always represents a method execution, i.e. the method you wish to intercept.
 * **Pointcut**: A regular expression that matches the join point, i.e. it is a predicate that matches an advice at a
   particular join point.
-* **Advice**: Once Pointcuts are defined, we need to decide what to do with them and for that we use methods that are
-  called *advices*. An advice is an action taken by an aspect at a particular join point. There are different types of
-  advices:
-    * **<code>@Before</code>**: Advice will be called before join point.
-    * **<code>@After</code>**: Advice will be called after join point, regardless it has throw an exception or not.
-    * **<code>@Around</code>**: This kind of advice can be invoked before and after join point method is called.
-    * **<code>@AfterReturning</code>**: Advice will be called after join point, unless it will throw an exception.
-    * **<code>@AfterThrowing</code>**: Advice will be called after join point, but only then when it will throw an
+* **Advice**: Once pointcuts are defined, we need to decide what to do with them and for that we use methods called *advices*. 
+  An advice is an action taken by an aspect at a particular join point. There are different types of advices:
+    * **<code>@Before</code>**: The advice will be called before the join point.
+    * **<code>@After</code>**: The advice will be called after the join point, irrespective of whether it has thrown an exception or not.
+    * **<code>@Around</code>**: This kind of advice can be invoked before and after the join point method is called.
+    * **<code>@AfterReturning</code>**: The advice will be called after the join point, unless it will throw an exception.
+    * **<code>@AfterThrowing</code>**: The advice will be called after the join point, but only then when it will throw an
       exception.
-* **Aspect**: A place where several pointcuts are coupled with their advices is called an aspect. It is also the
+* **Aspect**: A place where several pointcuts are coupled with their advices is called an *aspect*. It is also the
   location of the new logic you want to add to the existing class, method, classes or methods. The aspect is the
   modularisation of a concern that cuts across multiple classes and/or methods.
 * **AOP proxy**: An object created by the AOP framework in order to implement the aspect contracts (advice method
@@ -33,16 +32,17 @@ if we don't own the code for that component.
   application types or objects to create an advised object. The weaver scans the components in the `ApplicationContext`
   and dynamically generates code behind the scenes.
 
+
 ## Pointcut deep-dive
 
-A pointcut is an expression language of spring AOP which is used to match the target methods to apply the advice (i.e. a
-predicate). It has two parts, one is the method signature comprising of method name and parameters. Other one is the
+A pointcut is an expression language of Spring AOP that is used to match the target methods to apply the advice (i.e. a
+predicate). It has two parts, one is the method signature consisting of the method name and parameters. The other one is the
 pointcut expression which determines exactly which method we are applying the advice to. Spring’s pointcut model enables
-pointcut reuse independent of advice types. You can target a different advice with the same pointcut.
+pointcut reuse independent of advice types. This also allows us to target a different advice with the same pointcut.
 
 ### Pointcut Designators
 
-A pointcut expression starts with a pointcut designator (PCD), which is a keyword telling Spring AOP what to match.
+A pointcut expression starts with a pointcut designator (PCD), a keyword telling Spring AOP what to match.
 There are several pointcut designators, such as the execution of a method, a type, method arguments, or annotations.
 
 <ol>
@@ -50,7 +50,7 @@ There are several pointcut designators, such as the execution of a method, a typ
 
 `@Pointcut("execution(public String com.example.pointcutadvice.dao.FooDao.findById(Long))")`
 
-This example pointcut will match exactly the execution of `findById` method of the `FooDao` class. This works, but it is
+This PCD will match exactly the execution of `findById` method of the `FooDao` class. This works, but it is
 not very flexible. Suppose we would like to match all the methods of the `FooDao` class, which may have different
 signatures, return types, and arguments. To achieve this, we may use wildcards:
 
@@ -59,7 +59,8 @@ signatures, return types, and arguments. To achieve this, we may use wildcards:
 Here the first wildcard matches any return value, the second matches any method name, and the `(..)` pattern matches any
 number of parameters (zero or more).
 </li>
-<li><code>within</code>: Another way to achieve the same result from the previous section is by using the within PCD, which limits matching to join points of certain types.
+<li><code>within</code>: Another way to achieve the same result from the previous section is by using the within PCD, 
+which limits matching to join points of certain types.
 
 `@Pointcut("within(com.example.pointcutadvice.dao.FooDao)")`
 
@@ -74,7 +75,9 @@ We could also match any type within the `com.example` package or a sub-package:
 Which is equivalent to:
 `@Pointcut("within(@org.springframework.stereotype.Repository *)")`
 </li>
-<li><code>this</code> and <code>target</code>: this limits matching to join points where the bean reference is an instance of the given type, while target limits matching to join points where the target object is an instance of the given type. The former works when Spring AOP creates a CGLIB-based proxy, and the latter is used when a JDK-based proxy is created. 
+<li><code>this</code> and <code>target</code>: this limits matching to join points where the bean reference is an instance of the given type, 
+while target limits matching to join points where the target object is an instance of the given type. 
+The former works when Spring AOP creates a CGLIB-based proxy, and the latter is used when a JDK-based proxy is created. 
 
 ```
 public class FooDao implements BarDao {
@@ -96,7 +99,7 @@ the proxied object will be a subclass of FooDao and the this PCD could be used:
 
 `@Pointcut("@target(org.springframework.stereotype.Repository)")`
 </li>
-<li><code>args</code>: This pointcut matches any method that starts with find and has only one parameter of type <code>Long</code>. If we want to match a method with any number of parameters but having the first parameter of type <code>Long</code>, we could use the following expression:
+<li><code>args</code>: This PCD matches any method that starts with find and has only one parameter of type <code>Long</code>. If we want to match a method with any number of parameters but having the first parameter of type <code>Long</code>, we could use the following expression:
 
 `@Pointcut("execution(* *..find*(Long,..))")`
 </li>
@@ -114,7 +117,8 @@ public void logMethodAcceptionEntityAnnotatedBean(JoinPoint jp) {
 ```
 
 </li>
-<li><code>@annotation</code>: This PCD limits matching to join points where the subject of the join point has the given annotation. For example, we may create a <code>@Loggable</code> annotation:
+<li><code>@annotation</code>: This PCD limits matching to join points where the subject of the join point has the given annotation. 
+For example, we may create a <code>@Loggable</code> annotation:
 
 ```
 @Pointcut("@annotation(com.example.pointcutadvice.annotations.Loggable)")
@@ -124,7 +128,8 @@ public void loggableMethods() {}
 </li>
 Then we may log execution of the methods marked by that annotation:
 
-```@Before("loggableMethods()")
+```
+@Before("loggableMethods()")
 public void logMethod(JoinPoint jp) {
     String methodName = jp.getSignature().getName();
     logger.info("Executing method: " + methodName);
