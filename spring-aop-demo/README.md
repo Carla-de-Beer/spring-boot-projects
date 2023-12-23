@@ -1,8 +1,8 @@
-# Spring AOP Example
+# Spring AOP Examples
 
 This is a simple Spring Boot project demonstrating Aspect Oriented Programming (AOP) functionalities.
 
-The project is built with Java 11 and Maven.
+The project is based on Java 21 and Spring Boot 3.2.0 and built with Maven.
 
 ## AOP Terminology simply explained
 
@@ -12,16 +12,19 @@ decorate the needed behaviour without touching the code base, thereby allowing y
 been written by third parties. In other words, Spring AOP provides a non-intrusive way of altering components, even
 if we don't own the code for that component.
 
-* **Join Point**: In Spring this always represents a method execution, i.e. the method you wish to intercept.
-* **Pointcut**: A regular expression that matches the join point, i.e. it is a predicate that matches an advice at a
-  particular join point.
-* **Advice**: Once pointcuts are defined, we need to decide what to do with them and for that we use methods called *advices*. 
+* **Join Point**: In Spring AOP this always represents a method execution, i.e. the method you wish to intercept.
+* **Pointcut**: It is a predicate that matches an advice at a particular join point.
+* **Advice**: Once pointcuts are defined, we need to decide what to do with them and for that we use methods called
+  *advices*.
   An advice is an action taken by an aspect at a particular join point. There are different types of advices:
     * **<code>@Before</code>**: The advice will be called before the join point.
-    * **<code>@After</code>**: The advice will be called after the join point, irrespective of whether it has thrown an exception or not.
+    * **<code>@After</code>**: The advice will be called after the join point, irrespective of whether it has thrown an
+      exception or not.
     * **<code>@Around</code>**: This kind of advice can be invoked before and after the join point method is called.
-    * **<code>@AfterReturning</code>**: The advice will be called after the join point, unless it will throw an exception.
-    * **<code>@AfterThrowing</code>**: The advice will be called after the join point, but only then when it will throw an
+    * **<code>@AfterReturning</code>**: The advice will be called after the join point, unless it will throw an
+      exception.
+    * **<code>@AfterThrowing</code>**: The advice will be called after the join point, but only then when it will throw
+      an
       exception.
 * **Aspect**: A place where several pointcuts are coupled with their advices is called an *aspect*. It is also the
   location of the new logic you want to add to the existing class, method, classes or methods. The aspect is the
@@ -30,13 +33,13 @@ if we don't own the code for that component.
   executions and so on). In the Spring Framework, an AOP proxy will be a JDK dynamic proxy or a CGLIB proxy.
 * **Weaving**: The Weaver is the framework that implements AOP — AspectJ or Spring AOP. Weaving links aspects with other
   application types or objects to create an advised object. The weaver scans the components in the `ApplicationContext`
-  and dynamically generates code behind the scenes.
-
+  and dynamically generates code behind the scenes. Spring AOP makes use of runtime weaving.
 
 ## Pointcut deep-dive
 
 A pointcut is an expression language of Spring AOP that is used to match the target methods to apply the advice (i.e. a
-predicate). It has two parts, one is the method signature consisting of the method name and parameters. The other one is the
+predicate). It has two parts, one is the method signature consisting of the method name and parameters. The other one is
+the
 pointcut expression which determines exactly which method we are applying the advice to. Spring’s pointcut model enables
 pointcut reuse independent of advice types. This also allows us to target a different advice with the same pointcut.
 
